@@ -1,0 +1,34 @@
+{
+  "data": [
+    {
+      "id": "685d1470fe4d5c3b-01",
+      "dblId": "685d1470fe4d5c3b",
+      "relatedDbl": null,
+      "name": "American Standard Version (Byzantine Text with Apocrypha)",
+      "nameLocal": "American Standard Version Byzantine Text with Apocrypha",
+      "abbreviation": "ASVBT",
+      "abbreviationLocal": "ASVBT",
+      "description": null,
+      "descriptionLocal": null,
+      "language": {
+        "id": "eng",
+        "name": "English",
+        "nameLocal": "English",
+        "script": "Latin",
+        "scriptDirection": "LTR"
+      },
+      "countries": [
+        {
+          "id": "US",
+          "name": "United States of America",
+          "nameLocal": "United States of America"
+        }
+      ],
+      "type": "text",
+      "updatedAt": "2022-12-02T00:20:54.000Z",
+      "copyright": "PUBLIC DOMAIN",
+      "info": "<p>This Public Domain Bible translation is brought to you by Adam Boyd and <a href=\"https://eBible.org\">eBible.org</a>.</p>",
+      "audioBibles": []
+    }
+  ]
+}
