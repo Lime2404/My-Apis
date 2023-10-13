@@ -1,16 +1,13 @@
-package versions;
+package SimpleApis;
 
 import io.restassured.RestAssured;
-import io.restassured.filter.log.LogDetail;
 import io.restassured.response.Response;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Test;
 
-// Get more info from https://rapidapi.com/Privatix/api/temp-mail/
+// Get more info from https://www.disify.com/
 public class GetempMail {
 
-    String url = "https://www.disify.com/";
+    String url = "https://www.disify.com/api/email/emil@mail.com";
 
     @Test
         public void testHello() {

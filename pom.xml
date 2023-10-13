@@ -41,28 +41,28 @@
                             <configurableRule>
                                 <rule>architecture.ArchitectureToolkitTest</rule>
                                 <applyOn>
-                                    <packageName>com.allianz.automation.toolkit</packageName>
+                                    <packageName>com.api.automation.toolkit</packageName>
                                     <scope>main</scope>
                                 </applyOn>
                             </configurableRule>
                             <configurableRule>
                                 <rule>architecture.ArchitectureModelTest</rule>
                                 <applyOn>
-                                    <packageName>com.allianz.automation.model</packageName>
+                                    <packageName>com.api.automation.model</packageName>
                                     <scope>main</scope>
                                 </applyOn>
                             </configurableRule>
                             <configurableRule>
                                 <rule>architecture.ArchitectureStepsTest</rule>
                                 <applyOn>
-                                    <packageName>com.allianz.automation.test</packageName>
+                                    <packageName>com.api.automation.test</packageName>
                                     <scope>main</scope>
                                 </applyOn>
                             </configurableRule>
                             <configurableRule>
                                 <rule>architecture.ArchitectureTest</rule>
                                 <applyOn>
-                                    <packageName>com.allianz.automation</packageName>
+                                    <packageName>com.api.automation</packageName>
                                     <scope>main</scope>
                                 </applyOn>
                             </configurableRule>
@@ -95,6 +95,12 @@
             <version>5.1.0</version>
         </dependency>
         <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>5.5.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>json-schema-validator</artifactId>
             <version>5.1.0</version>
@@ -103,6 +109,12 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>1.7.36</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -124,7 +136,11 @@
             <artifactId>httpclient</artifactId>
             <version>4.5.13</version> <!-- Specify the latest version of Apache HttpClient -->
         </dependency>
-
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20230618</version>
+        </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
@@ -134,6 +150,21 @@
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
             <version>2.11.1</version> <!-- Specify the latest version of Log4j 2 -->
+        </dependency>
+        <dependency>
+            <groupId> org.apache.cassandra</groupId>
+            <artifactId>cassandra-all</artifactId>
+            <version>0.8.1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 </project>
