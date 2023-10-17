@@ -45,5 +45,16 @@ public class TrainApp {
 //        given().get(URI1)
 //                .then()
 //                .log().all();
+
+        Response response3 = given() //RestAssured.
+                .contentType(ContentType.JSON)
+                .header("Authorization", "Bearer " + token)
+                .when()
+                .get("http://85.192.34.140:8080/api/user")
+                .then().log().all()
+                .extract()
+                .response();
+        System.out.println("Response: " + response3.body().asString());
     }
+
 }
