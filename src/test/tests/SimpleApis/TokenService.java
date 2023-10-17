@@ -3,6 +3,7 @@ package SimpleApis;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 
@@ -16,7 +17,6 @@ public class TokenService {
 //        return response.getHeader("Authorization");
 
         LoginRequest loginRequest2 = new LoginRequest(username, password);
-
 
         // объяснение на 13 минуте  https://youtu.be/rrMQWZhfAVA
         Response response2 = given() //RestAssured.
