@@ -22,14 +22,18 @@ public class HhResume {
         }};
     }
 
-    public String getGender(){
-        return gender.getText().equals("Мужчина") ? "М" : "Ж";
-    }
 //    public String getGender(){
-//        String genderValue = gender.getText();
-//        if(genderValue == "Мужчина"){
-//            return "M";
-//        }
-//        return "Ж";
+//        return gender.getText().equals("Мужчина") ? "М" : "Ж";
 //    }
+    public String getGender() {
+        String genderValue = gender.getText();
+        if (genderValue.equals("Мужчина")) {
+
+            genderValue = "M";
+        }
+        return genderValue;
+        }
+
+
+
 }
