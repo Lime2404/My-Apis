@@ -3,6 +3,7 @@ package hh;
 import core.BaseSelenideTest;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.apache.commons.lang.builder.EqualsBuilder;
 import org.json.simple.JSONObject;
 import org.junit.Assert;
 import org.junit.Test;
@@ -49,7 +50,18 @@ public class hhLocal extends BaseSelenideTest {
         public void checkAttributesClass(){
             HhResume hhResume = new HhResume(URL);
             Resume expectedAttributes = new Resume("М", 36, "Томск", true, false);
-            HhResume actualAttributes = new Resume()
+            Resume actualAttributes = new Resume(hhResume.getGender(), hhResume.getAge(),
+                    hhResume.getCity(), hhResume.isPhoneConfirmed(),
+                    hhResume.isReadyToRelocate());
+            // корректное сравнение двух классов
+        Assert.assertTrue(EqualsBuilder.reflectionEquals(expectedAttributes, actualAttributes));
+            // альтернативное сравнение переменных через получение их в каждом из классов
+            Assert.assertEquals(expectedAttributes.getAge(), actualAttributes.getAge());
+            Assert.assertEquals(expectedAttributes.getCity(), actualAttributes.getCity());
+            Assert.assertEquals(expectedAttributes.getGender(), actualAttributes.getGender());
+            Assert.assertEquals(expectedAttributes.isPhoneConfirmed(), actualAttributes.isPhoneConfirmed());
+            Assert.assertEquals(expectedAttributes.isReadyToRelocate(), actualAttributes.isReadyToRelocate());
+
     }
 
         @Test
