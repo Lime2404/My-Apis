@@ -4,7 +4,7 @@ package SimpleApis;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class fetchEmails {
+public class UserData {
 //    @JsonProperty
     private Integer id;
     private String email;
@@ -15,7 +15,7 @@ public class fetchEmails {
 
 //    @JsonCreator
 
-    public fetchEmails(Integer id, String email, String first_name, String last_name, String avatar) {
+    public UserData(Integer id, String email, String first_name, String last_name, String avatar) {
         this.id = id;
         this.email = email;
         this.first_name = first_name;
@@ -23,7 +23,7 @@ public class fetchEmails {
         this.avatar = avatar;
     }
 
-    public fetchEmails() {
+    public UserData() {
     }
 
     public Integer getId() {

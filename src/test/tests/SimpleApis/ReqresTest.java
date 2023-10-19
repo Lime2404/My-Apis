@@ -1,6 +1,5 @@
 package SimpleApis;
 
-import dev.failsafe.internal.util.Assert;
 import io.restassured.http.ContentType;
 import static org.junit.Assert.assertTrue;
 import org.junit.jupiter.api.Test;
@@ -15,12 +14,12 @@ public class ReqresTest {
     @Test
 
     public void checkAvatarAndIdTest(){
-        List<fetchEmails> users = given()
+        List<UserData> users = given()
                 .when()
                 .contentType(ContentType.JSON)
                 .get(URL+"api/users?page=2")
                 .then().log().all()
-                .extract().body().jsonPath().getList("data", fetchEmails.class);
+                .extract().body().jsonPath().getList("data", UserData.class);
         // перебираем список и выбираем методы по очередности
         users.forEach(x-> assertTrue(x.getAvatar().contains(x.getId().toString())));
     }
