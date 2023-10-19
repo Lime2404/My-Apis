@@ -16,15 +16,21 @@ public class hhLocal extends BaseSelenideTest {
     private final static String URL = "file:///C:/TEMP/Resume.html";
 //    private final static String URL = "https://krisha.kz/a/show/687462531";
 
-    @Test
+    @Test   // ожидаемые результаты
     public void checkAttributesHashMap(){
         HhResume hhResume = new HhResume(URL);
         Map<String, Object> expectedAttributes = new HashMap<>();
         expectedAttributes.put(HhResume.GENDER, "М");
+        expectedAttributes.put(HhResume.AGE, 36);
+        expectedAttributes.put(HhResume.CITY, "Томск");
+        expectedAttributes.put(HhResume.CONFIRMED_PHONE, true);
+        expectedAttributes.put(hhResume.READY_TO_RELOCATE, false);
 
+        // для вызова актуальных данных из класса HH Resume нам придется создать мапу и в неё
+        // засунуть всё что было в мапе актуальных резуоттатов из getAttributes()
         Map<String, Object> actualAttributes = hhResume.getAttributes();
-
-        Assert.assertEquals(expectedAttributes, actualAttributes);
+// сравнение ожидаемых и актуальных результатов
+        Assert.assertEquals(expectedAttributes, actualAttributes); }
 //        HhResumePage hhResumePage = new HhResumePage(URL);
 //emil.issabekov@gmail.com
 
@@ -37,6 +43,19 @@ public class hhLocal extends BaseSelenideTest {
 //                .extract()
 //                .response();
 //        response.prettyPrint();
+
+    // Сравнение значений через классы без хэш мапов
+        @Test
+        public void checkAttributesClass(){
+            HhResume hhResume = new HhResume(URL);
+            Resume expectedAttributes = new Resume("М", 36, "Томск", true, false);
+            HhResume actualAttributes = new Resume()
+    }
+
+        @Test
+        public void checkAttributesHashMap2(){
+            HhResume hhResume2 = new HhResume(URL);
+            boolean t = hhResume2.isReadyToRelocate();
     }
 
 }
