@@ -1,5 +1,6 @@
 package SimpleApis;
 
+import RegistrationAssertion.Register;
 import io.restassured.http.ContentType;
 
 import static io.restassured.RestAssured.authentication;
@@ -19,10 +20,12 @@ public class ReqresTest {
     @Test
 
     public void checkAvatarAndIdTest() {
+        Specifications.installSpecification(Specifications.requestSpec(URL), Specifications.responseOK200());
         List<UserData> users = given()
                 .when()
-                .contentType(ContentType.JSON)
-                .get(URL + "api/users?page=2")
+//                .contentType(ContentType.JSON) // outdated due to established specification
+//                .get(URL + "api/users?page=2") // outdated due to established specification
+                .get("api/users?page=2")
                 .then().log().all()
                 .extract().body().jsonPath().getList("data", UserData.class);
 
@@ -49,5 +52,13 @@ public class ReqresTest {
 
         }
     }
+    @Test
+    public void successRegTest(){
+        Specifications.installSpecification(Specifications.requestSpec(URL), Specifications.responseOK200());
+       //ниже будут поля с одидаемыми данными согласно https://reqres.in/
+        Integer id = 4;
+        String token = "QpwL5tke4Pnpja7X4";
+        Register user = new Register("eve.holt@reqres.in", "pistol");
 
+    }
 }
