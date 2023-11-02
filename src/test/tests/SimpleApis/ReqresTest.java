@@ -1,9 +1,11 @@
 package SimpleApis;
 
 import RegistrationAssertion.Register;
+import RegistrationAssertion.SuccessReg;
+import RegistrationAssertion.UnSucceessReg;
 import io.restassured.http.ContentType;
 
-import static io.restassured.RestAssured.authentication;
+import static io.restassured.RestAssured.*;
 import static org.junit.Assert.assertTrue;
 
 import org.apache.cassandra.streaming.StreamOut;
@@ -11,8 +13,6 @@ import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static io.restassured.RestAssured.given;
 
 public class ReqresTest {
     private final static String URL = "https://reqres.in/";
@@ -52,6 +52,7 @@ public class ReqresTest {
 
         }
     }
+    // проверить что возвращаемые токен и id соответствуют требованиям
     @Test
     public void successRegTest(){
         Specifications.installSpecification(Specifications.requestSpec(URL), Specifications.responseOK200());
@@ -59,6 +60,65 @@ public class ReqresTest {
         Integer id = 4;
         String token = "QpwL5tke4Pnpja7X4";
         Register user = new Register("eve.holt@reqres.in", "pistol");
+        // передавая логин и пароль мы ожидаем получить в ответ токен и id
+        // создаем экземпляр класса, для него вызываем метод given и далее извлекаем ответ в виде этого класса
+        SuccessReg successReg = given()
+                .body(user)
+                .when()
+                .post("api/register")
+                .then().log().all() // дальше все данные которые получаем в ответ надо предать в класс
+                .extract().as(SuccessReg.class);
+        // проверяем предварительно, что пришел не пустой результат
+        Assert.assertNotNull(successReg.getId());
+        Assert.assertNotNull(successReg.getToken());
+        Assert.assertEquals(id, successReg.getId());
+        Assert.assertEquals(token, successReg.getToken());
 
+    }
+    // проыерить соответствует ли требованию возвращаемое сообещение при попытке отправить не полные креды
+    @Test
+    public void unSuccessRegTest(){
+        Specifications.installSpecification(Specifications.requestSpec(URL), Specifications.responseSpecError400());
+        //ниже будут поля с одидаемыми данными согласно https://reqres.in/
+        String error = "Missing password";
+        Register user = new Register("sydney@fife", "");
+        UnSucceessReg unSucceessReg = given()
+                .body(user)
+                .when()
+                .post("api/register")
+                .then().log().all()
+                .extract().as(UnSucceessReg.class);
+        Assert.assertEquals(error, unSucceessReg.getError());
+
+    }
+    // Проверит отсортированы ли элменты в массиве данных на сервисе
+    @Test
+    public void sortedYearsTest(){
+        Specifications.installSpecification(Specifications.requestSpec(URL), Specifications.responseOK200());
+        // Создаем список в который мы будем записывать всё полученные элементы с помощью библотеки restassured
+        // данные в виде объектов
+        List<ColorsData> colors  = given()
+                .when()
+                .get("api/unknown")
+                .then().log().all()
+                .extract().body().jsonPath().getList("data", ColorsData.class);
+        // ниже будет использоваться streamapi для того чтобы достать года, которые нам нужны из созданного выше списка
+        List<Integer> years = colors.stream().map(ColorsData::getYear).collect(Collectors.toList());
+        // конструкция ColorsData::getYear достает поле год  из каждого объекта
+        List<Integer> sortedYears = years.stream().sorted().collect(Collectors.toList());
+        Assert.assertEquals(sortedYears, years);
+        System.out.println(years);
+        System.out.println(sortedYears);
+    }
+
+    @Test
+    public void removeUser(){
+        Specifications.installSpecification(Specifications.requestSpec(URL), Specifications.responseUnique(204));
+                given()
+                .when()
+                .delete("api/users/2")
+                .then().log().all();
+                // Ассерты пока не нужны так как мы только ждем нужный статус
+//                Assert.assertEquals(Specifications.responseUnique(204), 204);
     }
 }
