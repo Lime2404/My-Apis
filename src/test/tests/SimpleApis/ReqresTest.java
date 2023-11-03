@@ -3,14 +3,18 @@ package SimpleApis;
 import RegistrationAssertion.Register;
 import RegistrationAssertion.SuccessReg;
 import RegistrationAssertion.UnSucceessReg;
+import com.codeborne.selenide.As;
 import io.restassured.http.ContentType;
 
 import static io.restassured.RestAssured.*;
 import static org.junit.Assert.assertTrue;
 
 import org.apache.cassandra.streaming.StreamOut;
+import org.checkerframework.checker.units.qual.A;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
+
+import java.time.Clock;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -120,5 +124,25 @@ public class ReqresTest {
                 .then().log().all();
                 // Ассерты пока не нужны так как мы только ждем нужный статус
 //                Assert.assertEquals(Specifications.responseUnique(204), 204);
+    }
+
+    @Test
+    public void timeTest(){
+        Specifications.installSpecification(Specifications.requestSpec(URL), Specifications.responseOK200());
+        UserTime user = new UserTime("morpheus", "zion resident");
+        UserTimeResponse response = given()
+                .body(user)
+                .when()
+                .put("/api/users/2")
+                .then().log().all()
+                .extract().as(UserTimeResponse.class);
+  // Ниже получаем время компьютера и преобразуем ответ с сервера отразая ненужную часть регулярными выражениями
+       String regex = "(.{5})$";
+       String regex1 = "(.{11})$";
+        // в этом выражении мы меняем regex на ничего-  replaceAll(regex,"")
+        String currentTime = Clock.systemUTC().instant().toString().replaceAll(regex1,"");
+        System.out.println(currentTime);
+        Assert.assertEquals(currentTime, response.getUpdatedAt().toString().replaceAll(regex, ""));
+
     }
 }
