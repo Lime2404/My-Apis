@@ -1,6 +1,6 @@
 package SimpleApis;
 
-public class TemporaryPogo {
+public class TemporaryPogoPeople {
         private Integer id;
         private String email;
         private String first_name;
@@ -27,7 +27,7 @@ public class TemporaryPogo {
         return avatar;
     }
 
-    public TemporaryPogo(Integer id, String email, String first_name, String last_name, String avatar) {
+    public TemporaryPogoPeople(Integer id, String email, String first_name, String last_name, String avatar) {
         this.id = id;
         this.email = email;
         this.first_name = first_name;
@@ -36,5 +36,5 @@ public class TemporaryPogo {
 
 
     }
-    public TemporaryPogo(){}
+    public TemporaryPogoPeople(){}
 }
