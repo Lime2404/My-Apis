@@ -33,8 +33,6 @@ public class TemporaryTests {
 
     @Test
 
-
-
     public void checkRegSuccessStat() {
         String token = "QpwL5tke4Pnpja7X4";
         int id = 4;
@@ -51,5 +49,22 @@ public class TemporaryTests {
        Assert.assertTrue(temporaryPogoSRegistration.getId().equals(id));
 //       Assert.assertEquals(java.util.Optional.of(id), temporaryPogoSRegistration.getId());
 //        System.out.println(temporaryPogoSRegistration.getId() + " " + temporaryPogoSRegistration.getToken());
+    }
+
+    @Test
+    public void unseccessReg(){
+        String errorMessage = "Missing password";
+        Specifications.installSpecification(Specifications.requestSpec(URi), Specifications.responseUnique(400));
+        TemporaryPogoRegistration temporaryPogoRegistration = new TemporaryPogoRegistration("sydney@fife", "");
+        TemporaryPogoUSRegistration temporaryPogoUSRegistration = given()
+                .body(temporaryPogoRegistration)
+                .when()
+                .post("api/register")
+                .then().log().all()
+                .extract().as(TemporaryPogoUSRegistration.class);
+
+        Assert.assertEquals(temporaryPogoUSRegistration.getError(), errorMessage);
+        System.out.println(temporaryPogoUSRegistration.getError());
+        System.out.println(errorMessage);
     }
 }
