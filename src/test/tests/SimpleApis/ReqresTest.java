@@ -32,10 +32,10 @@ public class ReqresTest {
                 .get("api/users?page=2")
                 .then().log().all()
                 .extract().body().jsonPath().getList("data", UserData.class);
-
+//        int j = 0;
         //в класс UserData мы извлекаем этот список пользователей из массива data
         // перебираем список и выбираем методы по очередности
-        // ниже х - это счетчик экземпляров класса
+        // ниже х - это счетчик экземпляров класса ( по сути x равен экземпляру класса)
         // тут мы проходим по каждому пользователю и сравниванием аватар
 //        users.forEach(x -> assertTrue(x.getAvatar().contains(x.getId().toString())));
         // проверили что id содержится в avatar;
@@ -43,9 +43,10 @@ public class ReqresTest {
         // нерабочий ассерт
 //        Assert.assertTrue(users.stream().allMatch(x -> x.getEmail().endsWith("@reqress.in")));
 
-        // метод collect позволяет всё собрать и поместить в список
+        // метод collect позволяет всё собрать и поместить в список.
+        // Запись UserData::getAvatar говорит о том что мы получаем поле Avatar класса UserDada
         List<String> avatars = users.stream().map(UserData::getAvatar).collect(Collectors.toList());
-        // вызов лямбды, для неё получим id и эту id превратив в строку
+        // вызов лямбды, для неё получим id и эту id превратив в строку - лямбда выражения
         List<String> ids = users.stream().map(x->x.getId().toString()).collect(Collectors.toList());
         // сравнение двух списков
         // можно устраивать проверку даже в цикле проверяя наличие одних сущностей в других
