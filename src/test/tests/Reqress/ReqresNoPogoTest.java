@@ -100,6 +100,6 @@ public class ReqresNoPogoTest {
         String token = jsonPath.get("token");
         // в assrtaх всегда сначачал пишется ожидаемый резуоттат
         Assert.assertEquals(4, id);
-        Assert.assertEquals("QpwL5tke4Pnpja7X4", token);
+        Assert.assertEquals("QpwL5tke4Pnpja7X4", token); //
     }
 }
