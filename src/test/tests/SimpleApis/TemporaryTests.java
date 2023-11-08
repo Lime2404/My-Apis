@@ -84,4 +84,10 @@ public class TemporaryTests {
     Assert.assertTrue(years.equals(sortedYears));
     Assert.assertEquals(years, sortedYears);
     }
+    @Test
+    public void RemoveUser(){
+        Specifications.installSpecification(Specifications.requestSpec(URi), Specifications.responseUnique(204));
+        given().when().delete("api/users/2").then().log().all();
+    }
+
 }
