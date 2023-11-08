@@ -67,4 +67,21 @@ public class TemporaryTests {
         System.out.println(temporaryPogoUSRegistration.getError());
         System.out.println(errorMessage);
     }
+
+    @Test
+    public void YearSortOrder(){
+        Specifications.installSpecification(Specifications.requestSpec(URi), Specifications.responseOK200());
+        List<TemporaryYear> configuration = given()
+                .when()
+                .get("api/unknown")
+                .then().log().all()
+                .extract().body().jsonPath().getList("data", TemporaryYear.class);
+//        int i = 0;
+        List<Integer> years = configuration.stream().map(TemporaryYear::getYear).collect(Collectors.toList());
+//        System.out.println(years);
+        List<Integer> sortedYears = years.stream().sorted().collect(Collectors.toList());
+//        System.out.println(sortedYears);
+    Assert.assertTrue(years.equals(sortedYears));
+    Assert.assertEquals(years, sortedYears);
+    }
 }
