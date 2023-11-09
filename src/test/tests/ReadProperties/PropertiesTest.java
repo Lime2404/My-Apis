@@ -17,7 +17,7 @@ public class PropertiesTest extends BaseSelenideTest {
 
     @Test
     public void readFromConf(){
-        // здесь мы планируем использовать библиотеку typesafe и создать для неё конфиг public class ConfigProvider {
+        // здесь мы планируем использовать библиотеку typesafe(зависимость в maven) и создать для неё конфиг public class ConfigProvider {
         String urlFromConfig = ConfigProvider.URL;
         System.out.println(urlFromConfig);
         Boolean isAdminFromConfig = ConfigProvider.IS_ADMIN;
