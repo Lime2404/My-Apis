@@ -102,4 +102,21 @@ public class ReqresNoPogoTest {
         Assert.assertEquals(4, id);
         Assert.assertEquals("QpwL5tke4Pnpja7X4", token); //
     }
+    @Test
+    public void unseccessRegTestNoPojo(){
+        Specifications.installSpecification(Specifications.requestSpec(URi), Specifications.responseSpecError400());
+        Map<String, String> user = new HashMap<>();
+        user.put("email", "sydney@fife");
+        user.put("password", "");
+        Response response = given()
+                .body(user)
+                .when()
+                .post("api/register")
+                .then().log().all()
+                .extract().response();
+        JsonPath jsonPath = response.jsonPath();
+        String message = jsonPath.get("error");
+        Assert.assertEquals("Missing password", message);
+//        System.out.println(message);
+    }
 }
