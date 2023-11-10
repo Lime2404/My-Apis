@@ -61,7 +61,7 @@ public class WikiTest extends BaseSelenideTest {
 //            System.out.println(currenturl + " " + listurl);
             Assert.assertEquals(currenturl, listurl);
         }
-// 15:26 https://youtu.be/eSYSQikJCTY?list=PLS-CH047rQ3U8iIUIb9gm3cyf9kbOSasP
+// 15:24 https://youtu.be/eSYSQikJCTY?list=PLS-CH047rQ3U8iIUIb9gm3cyf9kbOSasP
 
     }
 }
