@@ -2,6 +2,9 @@ package UI;
 
 import com.codeborne.selenide.Selenide;
 import core.BaseSelenideTest;
+import io.qameta.allure.Issue;
+import io.qameta.allure.Link;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -10,6 +13,8 @@ public class YaTests extends BaseSelenideTest {
 
     private final static String URL = "https://ya.ru";
     @Test
+    @Issue(value = "1")
+    @Link(name = "Погода", url = URL)
     public void SuccessTest() throws InterruptedException {
 //        Selenide.open(URL);
         driver.get(URL);
@@ -19,7 +24,14 @@ public class YaTests extends BaseSelenideTest {
 //        String text = driver.findElement(By.xpath("//*[@id=\"search-result\"]/li[2]/article/div[2]/div")).getText();
 //        System.out.println(text);
 //        Assert.assertTrue(text.contains("Москва"));
+//        driver.close();
+//        driver.quit();
     }
+//    @After
+//    public void tearDown(){
+//        driver.close(); // закрываем хром драйвер
+//        driver.quit(); // закрываем окно браузера
+//    }
 
     @Test
     public void FailedTest() {

@@ -9,7 +9,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 /**
- * Базовый класс для инициализации селенида
+ * Базовый класс для инициализации селенида. Позволяет взаимодейтсвоать со всеми элементами
+ * в классе и там не надо ничего инициализирвать
  */
 public class BaseSelenideTest {
 
@@ -40,7 +41,7 @@ public class BaseSelenideTest {
     /**
      * Выполнение метода после каждого закрытия тестов
      */
-    @AfterEach
+    @AfterEach // метод завершающий работы с webdriver
     public void tearDown(){
         Selenide.closeWebDriver();
     }
