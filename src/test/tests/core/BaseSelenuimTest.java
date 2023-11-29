@@ -1,5 +1,6 @@
 package core;
 
+import ReadProperties.ConfigProvider;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
@@ -23,11 +24,12 @@ abstract public class BaseSelenuimTest {
         // ниже ожидания для браузера
         driver1.manage().window().maximize(); // окно на весь экран и не было мобильного окна
         // загружаем страницу до опрделенного момента, но не дольше чем 10 секунд
-        driver1.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+        driver1.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS); // означает что скоро это код устареет
         // пропишем время ожидания элементов на странице перед взаимодействием с ними
         driver1.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         BaseSeleniumPage.setDriver(driver1); // завершаем инициализацию веб драйвера вызывая его
-        driver1.get("https://kz.pegast.asia/ru/agency/pegasys-external/search-tour");
+//        driver1.get("https://kz.pegast.asia/ru/agency/pegasys-external/search-tour");
+        driver1.get(ConfigProvider.URL);
     }
     // метод ниже будет вызываться каждый раз, когда у нас будут заканчиваться тесты
 

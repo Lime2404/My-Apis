@@ -16,7 +16,7 @@ public interface ConfigProvider {
         : ConfigFactory.load("application.conf"); // теперь можно обращаться к файоу и читать
     }
 //    Создаем статичные сроки-перменные, чтобы открывались нужные нам значения из другого класса
-    String URL = readConfig().getString("https://kz.pegast.asia/ru/agency/pegasys-external/search-tour"); // прочитали значние url из файла
+    String URL = readConfig().getString("url1"); // прочитали значние url из файла
     Integer AGE = readConfig().getInt("age");
     String ADMIN_LOGIN = readConfig().getString("usersParams.admin.login"); // cсылка не работает, но
     // библиотека всё равно позволяе копать вглубь иерархии

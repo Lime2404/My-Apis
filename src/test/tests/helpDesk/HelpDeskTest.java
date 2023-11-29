@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class HelpDeskTest extends BaseSelenuimTest {
 
-@Test
+@Test // если не выбрать нужную библиотеку, то
     public void checkTicket(){
         String hotelInput = "Hilton Astana";
         MainPage mainPage = new MainPage();
