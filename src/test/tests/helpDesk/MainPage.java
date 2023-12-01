@@ -65,6 +65,7 @@ public class MainPage extends BaseSeleniumPage {
         // если мы ниже создадим еще один метод. то мы так же можем вызвать его при звпуске теста через точку
         // в этой строке mainPage.createTicket(hotelInput);
         // а если метод еще и возвращает новый класс, то в тесте можно даже использовать методы этого класса
+        //https://youtu.be/brKmBegyObU?list=PLS-CH047rQ3U8iIUIb9gm3cyf9kbOSasP&t=3013
     }
 
     // создавая экземпляр класса у нас произойдет инициализация всей страницы
