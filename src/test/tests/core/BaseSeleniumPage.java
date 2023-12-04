@@ -3,6 +3,8 @@ package core;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 
+// возможно в этом классе нам необходимо присвоить другое имя драйверу (driver0)
+
 abstract public class BaseSeleniumPage {
     // на всех page классах мы будет наследаться от этого класса
     protected static WebDriver driver1; // если не сделать static, то не будет видно в методах
