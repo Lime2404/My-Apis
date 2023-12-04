@@ -55,6 +55,7 @@ public class StreamApiExamples {
         System.out.println(top10.get(9).getSymbol() + "вот");
         Assertions.assertEquals(top10.get(9).getSymbol(), "FLAME-USDT");
 
-//        int a = 0;
     }
+
+    @Test
 }
