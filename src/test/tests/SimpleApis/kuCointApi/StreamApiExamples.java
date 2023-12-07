@@ -12,6 +12,8 @@ import java.util.stream.Collectors;
 import static io.restassured.RestAssured.get;
 import static io.restassured.RestAssured.given;
 
+//https://www.youtube.com/watch?v=Ob2mdng_dMI&list=PLS-CH047rQ3U8iIUIb9gm3cyf9kbOSasP&index=10&ab_channel=OlehPendrak
+
 public class StreamApiExamples {
     public List<TickerData> getTickers = given()
 //        given()
@@ -62,7 +64,7 @@ public class StreamApiExamples {
     public void sortLowToHigh(){
         List<TickerData> lowToHigh = getTickers.stream().filter(x->x.getSymbol().endsWith("USDT"))
                 .sorted(new TickerComparatorLow()).limit(10).collect(Collectors.toList());
-        int a = 0;
+//        int a = 0;
     }
 
     // Собираем класс в map. Преобразуем название валюты в маленькие буквы
