@@ -1,5 +1,5 @@
 package SimpleApis.kuCointApi;
-
+// создание класса с новыми полями(
 public class TickerShort {
     private String name;
     private Float changeRate;

@@ -15,8 +15,8 @@ import static io.restassured.RestAssured.given;
 public class fetchUsers {
     @Test
     public void getUser() {
-        Response response1 = RestAssured
-                .given()
+      Response response1 = //RestAssured
+                given()
                 .baseUri("https://reqres.in/api")
                 .basePath("/users")
                 .contentType(ContentType.JSON)
@@ -66,6 +66,7 @@ public class fetchUsers {
 //                .prettyPrint();
 //                .thenReturn().body().equals();
                   .then().body("data", equalTo(null));
+//                    int a = 0;
 //
 //                .getBody().prettyPrint();
     }

@@ -14,6 +14,7 @@ import org.checkerframework.checker.units.qual.A;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
+import java.nio.charset.StandardCharsets;
 import java.time.Clock;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,8 +34,8 @@ public class ReqresTest {
                 .then().log().all()
                 .extract().body().jsonPath().getList("data", UserData.class);
 //        int j = 0;
-        //в класс UserData мы извлекаем этот список пользователей из массива data
-        // перебираем список и выбираем методы по очередности
+        //в класс UserData мы извлекаем этот список пользователей из массива data в ответе от сервера
+        // перебираем список и выбираем методы по очередности и сохраняем объекты в list
         // ниже х - это счетчик экземпляров класса ( по сути x равен экземпляру класса)
         // тут мы проходим по каждому пользователю и сравниванием аватар
 //        users.forEach(x -> assertTrue(x.getAvatar().contains(x.getId().toString())));
@@ -46,8 +47,11 @@ public class ReqresTest {
         // метод collect позволяет всё собрать и поместить в список.
         // Запись UserData::getAvatar говорит о том что мы получаем поле Avatar класса UserDada
         List<String> avatars = users.stream().map(UserData::getAvatar).collect(Collectors.toList());
+//        List<String> avatars = users.stream().map(x->x.getAvatar()).collect(Collectors.toList());
+//        int a = 0;
         // вызов лямбды, для неё получим id и эту id превратив в строку - лямбда выражения
         List<String> ids = users.stream().map(x->x.getId().toString()).collect(Collectors.toList());
+        int a = 0;
         // сравнение двух списков
         // можно устраивать проверку даже в цикле проверяя наличие одних сущностей в других
         for(int i = 0; i < avatars.size(); i++){
@@ -73,6 +77,7 @@ public class ReqresTest {
                 .post("api/register")
                 .then().log().all() // дальше все данные которые получаем в ответ надо предать в класс
                 .extract().as(SuccessReg.class);
+        int a = 0;
         // проверяем предварительно, что пришел не пустой результат
         Assert.assertNotNull(successReg.getId());
         Assert.assertNotNull(successReg.getToken());
@@ -109,6 +114,7 @@ public class ReqresTest {
                 .extract().body().jsonPath().getList("data", ColorsData.class);
         // ниже будет использоваться streamapi для того чтобы достать года, которые нам нужны из созданного выше списка
         List<Integer> years = colors.stream().map(ColorsData::getYear).collect(Collectors.toList());
+//        int a = 0;
         // конструкция ColorsData::getYear достает поле год  из каждого объекта
         List<Integer> sortedYears = years.stream().sorted().collect(Collectors.toList());
         Assert.assertEquals(sortedYears, years);

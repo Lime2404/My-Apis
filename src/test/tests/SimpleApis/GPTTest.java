@@ -36,6 +36,7 @@ public class GPTTest {
                 .get("/api/user")
                 .then().log().all()
                 .statusCode(200);
+        int a = 0;
     }
 
 }
