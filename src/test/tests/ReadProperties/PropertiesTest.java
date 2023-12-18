@@ -1,6 +1,6 @@
 package ReadProperties;
 
-import core.BaseSelenideTest;
+import UI.BaseSelenideTest;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

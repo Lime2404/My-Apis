@@ -1,11 +1,9 @@
-package hh;
+package Temporary;
 
-import core.BaseSelenideTest;
+import UI.BaseSelenideTest;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;

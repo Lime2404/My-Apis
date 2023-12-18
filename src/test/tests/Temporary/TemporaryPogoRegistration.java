@@ -1,4 +1,4 @@
-package SimpleApis;
+package Temporary;
 
 public class TemporaryPogoRegistration {
     private String email;

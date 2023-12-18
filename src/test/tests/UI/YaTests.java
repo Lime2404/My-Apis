@@ -1,11 +1,7 @@
 package UI;
 
-import com.codeborne.selenide.Selenide;
-import core.BaseSelenideTest;
 import io.qameta.allure.Issue;
 import io.qameta.allure.Link;
-import org.junit.After;
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
@@ -21,6 +17,8 @@ public class YaTests extends BaseSelenideTest {
         driver.findElement(By.xpath("//input[@placeholder='найдётся всё']")).sendKeys("Время в Москве");
         Thread.sleep(1000);
         driver.findElement(By.xpath("//button[contains(.,'Найти')]")).click();
+
+//        Ниже представлена старая реализация, которую я вынес в новый класс BaseSelenideTest
 //        String text = driver.findElement(By.xpath("//*[@id=\"search-result\"]/li[2]/article/div[2]/div")).getText();
 //        System.out.println(text);
 //        Assert.assertTrue(text.contains("Москва"));

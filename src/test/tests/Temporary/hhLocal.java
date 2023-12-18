@@ -1,10 +1,7 @@
-package hh;
+package Temporary;
 
-import core.BaseSelenideTest;
-import io.restassured.http.ContentType;
-import io.restassured.response.Response;
+import UI.BaseSelenideTest;
 import org.apache.commons.lang.builder.EqualsBuilder;
-import org.json.simple.JSONObject;
 import org.junit.Assert;
 import org.junit.Test;
 

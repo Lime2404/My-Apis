@@ -4,11 +4,9 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
-import core.BaseSelenideTest;
-import org.bouncycastle.asn1.cmp.Challenge;
+import UI.BaseSelenideTest;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 import java.util.List;

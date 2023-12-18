@@ -1,4 +1,4 @@
-package SimpleApis;
+package Temporary;
 
 public class TemporaryPogoUSRegistration {
     private String error;

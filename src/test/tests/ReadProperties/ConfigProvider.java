@@ -19,7 +19,7 @@ public interface ConfigProvider {
     String URL = readConfig().getString("url1"); // прочитали значние url из файла
     Integer AGE = readConfig().getInt("age");
     String ADMIN_LOGIN = readConfig().getString("usersParams.admin.login"); // cсылка не работает, но
-    // библиотека всё равно позволяе копать вглубь иерархии
+    // библиотека всё равно позволяет копать вглубь иерархии
     String DEMO_PASSWORD = readConfig().getString("usersParams.demo.password");
     Boolean IS_ADMIN = readConfig().getBoolean("usersParams.admin.isAdmin");
 

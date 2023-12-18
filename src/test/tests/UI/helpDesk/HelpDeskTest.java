@@ -1,7 +1,6 @@
-package helpDesk;
+package UI.helpDesk;
 
-import core.BaseSelenuimTest;
-import org.junit.After;
+import UI.BaseSelenuimTest;
 import org.junit.Test;
 
 

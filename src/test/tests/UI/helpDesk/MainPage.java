@@ -1,13 +1,10 @@
-package helpDesk;
+package UI.helpDesk;
 
-import ReadProperties.ConfigProvider;
-import core.BaseSeleniumPage;
+import UI.BaseSeleniumPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
-import static org.openqa.selenium.Keys.ENTER;
 
 //https://youtu.be/brKmBegyObU?list=PLS-CH047rQ3U8iIUIb9gm3cyf9kbOSasP
 // https://kz.pegast.asia/ru/agency/pegasys-external/search-tour
