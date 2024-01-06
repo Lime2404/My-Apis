@@ -2,6 +2,7 @@ package UI;
 
 import io.qameta.allure.Issue;
 import io.qameta.allure.Link;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 

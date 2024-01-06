@@ -10,8 +10,11 @@ import org.openqa.selenium.support.PageFactory;
 // https://kz.pegast.asia/ru/agency/pegasys-external/search-tour
 
 public class MainPage extends BaseSeleniumPage {
+    ////*[@id="departure-location"]/a/span[2]
+    ///html/body/ul[3]
+    private final By cityList = By.xpath("//*[@id=\"departure-location\"]/a/span[2]");
 //    private final By cityList = By.xpath("//*[@id=\"departure-location\"]//select[@id=\"DepartureLocations\"]//optgroup[@label=\"Казахстан\"]");
-    private final By cityList = By.xpath("/html/body/ul[3]");
+//    private final By cityList = By.xpath("/html/body/ul[3]");
     // ниже мы сразу обращаемся к элементам, которых может не быть на станице пока мы не кликнули
     private WebElement cityListElementWeak = driver1.findElement(cityList);
     // есть подходящий вариант обратиться к элементу только тогда, когда он будет доступен

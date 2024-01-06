@@ -25,7 +25,8 @@ public class BaseSelenideTest {
         Configuration.webdriverLogsEnabled = true;
 //        Configuration.driverManagerEnabled = true;
         chromeOptions = new ChromeOptions();
-        Configuration.browserSize = "1920x1080";
+//        Configuration.browserSize = "1920x1080";
+        Configuration.browserSize = "100x108";
         Configuration.headless = false;
         driver = new EventFiringWebDriver(new ChromeDriver(chromeOptions));
     }

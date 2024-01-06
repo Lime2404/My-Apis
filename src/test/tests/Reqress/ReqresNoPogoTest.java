@@ -1,5 +1,6 @@
 package Reqress;
 
+import Decorator.LoggingExtension;
 import SimpleApis.Specifications;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -8,6 +9,7 @@ import org.hamcrest.Matcher;
 import org.json.simple.parser.JSONParser;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import javax.xml.parsers.SAXParser;
 import java.awt.geom.RectangularShape;
@@ -17,6 +19,8 @@ import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
+
+@ExtendWith({LoggingExtension.class})
 
 public class ReqresNoPogoTest {
     private final static String URi = "https://reqres.in/";
