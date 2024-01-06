@@ -6,7 +6,7 @@ import org.junit.jupiter.api.extension.BeforeTestExecutionCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 
 public class LoggingExtension implements BeforeTestExecutionCallback, AfterTestExecutionCallback {
-
+// ниже мы реализуем аннотации которые помогают нам добавить подпись при логировании ошибок
     @Override
     public void beforeTestExecution(ExtensionContext context){
         System.out.println("Началось " + context.getDisplayName());
@@ -16,5 +16,5 @@ public class LoggingExtension implements BeforeTestExecutionCallback, AfterTestE
     public void afterTestExecution(ExtensionContext context){
         System.out.println("Всё " + context.getDisplayName());
     }
-
+// добавим теперь анотацию @ExtendWith в класс ReqresNoPogoTest
 }
