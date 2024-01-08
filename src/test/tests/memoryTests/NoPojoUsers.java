@@ -21,6 +21,9 @@ public class NoPojoUsers {
         // хранящий кучу данных по data
         List<String> emails = jsonPath.get("data.email");
         System.out.println(emails);
+// альтернатиный и более знакомый вариант
+        List<String> test = response.jsonPath().getList("data.email");
+        System.out.println(test);
 
     }
 }
