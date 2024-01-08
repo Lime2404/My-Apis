@@ -13,6 +13,8 @@ import static io.restassured.RestAssured.given;
 public class UserListTest {
 
     private String url = "https://reqres.in/api";
+    private String expectedEmail = "lindsay.ferguson@reqres.in1";
+    List<String> emails;
 
     @Test
     public void getStatusCode(){
@@ -28,16 +30,22 @@ public class UserListTest {
     }
 
     @Test
-            public void getUserList() {
-        PojoUsersList usersList = given()
+
+    public void getUserList() {
+// все объекты можно положит в один список
+        List<PojoUsersList> usersList = given()
                 .contentType(ContentType.JSON)
-                .when().get(url)
+                .when().get(url +"/users?page=2")
                 .then().log().all()
 //            .extract().body().jsonPath().getList("data", PojoUsersList.class);
-                .extract().as(PojoUsersList.class);
-        System.out.println();
+                .extract().jsonPath().getList("data", PojoUsersList.class);
+      String actualEmail = usersList.get(1).getEmail();
+//            for(int i = 0; i < usersList.size(); i++){
+//                System.out.println(usersList.get(i).getEmail());
 
+//    Assert.assertTrue(expectedEmail.equals(actualEmail));
+    Assert.assertEquals(expectedEmail, actualEmail);
+
+        System.out.println(emails);
     }
-
-
 }
