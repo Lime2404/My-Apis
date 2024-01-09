@@ -118,6 +118,7 @@ public class ReqresNoPogoTest {
                 .post("api/register")
                 .then().log().all()
                 .extract().response();
+//        int a =0;
         JsonPath jsonPath = response.jsonPath();
         String message = jsonPath.get("error");
         Assert.assertEquals("Missing password", message);

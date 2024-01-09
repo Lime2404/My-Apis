@@ -6,9 +6,13 @@ import io.restassured.response.Response;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.put;
+
 // идем вниз по https://reqres.in/
 public class NoPojoUsers {
     private String url = "https://reqres.in/api";
@@ -103,6 +107,21 @@ public class NoPojoUsers {
         System.out.println(expectedToken);
         Assert.assertEquals(token, expectedToken);
     }
-
-
+// ниже пример когда не нужно создавать объект для передачи данных в rest assured
+    @Test
+        public void missingCreds() {
+        String expected_message = "Missing password";
+        Map<String, String> credentials = new HashMap<>();
+        credentials.put("email", "peter@klaven");
+        credentials.put("password", "");
+        Response response = given()
+                .body(credentials)
+                .when().post(url+"/login")
+                .then().log().all()
+                .extract().response();
+//        int a =0;
+        String error = response.jsonPath().get("error");
+        System.out.println(error);
+        Assert.assertEquals(expected_message, error);
+    }
 }
