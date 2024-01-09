@@ -35,8 +35,10 @@ public class NoPojoUsers {
                 .then().extract().response();
         Integer total = response.jsonPath().get("total");
         Integer totalPages = response.jsonPath().get("total_pages");
+        List<Integer> ids = response.jsonPath().get("data.id");
         System.out.println(total);
         System.out.println(totalPages);
+        System.out.println(ids + " " + ids.get(0));
 
         Assert.assertEquals(expectedTotal, total);
     }
