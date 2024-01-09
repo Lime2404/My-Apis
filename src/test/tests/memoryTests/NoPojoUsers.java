@@ -33,9 +33,9 @@ public class NoPojoUsers {
         Response response = given()
                 .when().get(url + "/users?page=2")
                 .then().extract().response();
-        Integer total = response.jsonPath().get("total");
+        Integer total = response.jsonPath().get("total");  // забираем из ответа поле
         Integer totalPages = response.jsonPath().get("total_pages");
-        List<Integer> ids = response.jsonPath().get("data.id");
+        List<Integer> ids = response.jsonPath().get("data.id"); // забираем из ответа массив полей
         System.out.println(total);
         System.out.println(totalPages);
         System.out.println(ids + " " + ids.get(0));
