@@ -136,7 +136,7 @@ public class ReqresTest {
     @Test
     public void timeTest(){
         Specifications.installSpecification(Specifications.requestSpec(URL), Specifications.responseOK200());
-        UserTime user = new UserTime("morpheus", "zion resident");
+        UserTime user = new UserTime("xmorpheus", "zion resident");
         UserTimeResponse response = given()
                 .body(user)
                 .when()
