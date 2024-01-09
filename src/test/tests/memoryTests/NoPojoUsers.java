@@ -2,6 +2,7 @@ package memoryTests;
 
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import static io.restassured.RestAssured.given;
 
 public class NoPojoUsers {
     private String url = "https://reqres.in/api";
+    private Integer expectedTotal = 12;
 
     @Test
     public void userList(){
@@ -25,5 +27,17 @@ public class NoPojoUsers {
         List<String> test = response.jsonPath().getList("data.email");
         System.out.println(test);
 
+    }
+    @Test
+    public void checkTotal(){
+        Response response = given()
+                .when().get(url + "/users?page=2")
+                .then().extract().response();
+        Integer total = response.jsonPath().get("total");
+        Integer totalPages = response.jsonPath().get("total_pages");
+        System.out.println(total);
+        System.out.println(totalPages);
+
+        Assert.assertEquals(expectedTotal, total);
     }
 }
