@@ -1,5 +1,6 @@
 package memoryTests;
 
+import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.checkerframework.checker.units.qual.C;
@@ -59,9 +60,25 @@ public class NoPojoUsers {
                 .when()
                 .post(url+"/users")
                 .then().extract().response();
-//        JsonPath jsonPath = response.jsonPath();
-//        String id = jsonPath.get("id");
-        String id = response.jsonPath().get("id");
+        JsonPath jsonPath = response.jsonPath();
+        String id = jsonPath.get("id");
+//        String id = response.jsonPath().get("id");
         System.out.println(id);
+    }
+
+    @Test
+    public void updateApi(){
+        Creds creds = new Creds("morpheus", "zion resident");
+        Response response = given()
+                .body(creds)
+                .when().contentType(ContentType.JSON)
+                .patch(url+"/users/2")
+                .then().extract().response();
+
+//        JsonPath jsonPath = response.jsonPath();
+//        String job = jsonPath.get("job");
+        String job = response.jsonPath().get("job");
+//        int a = 0;
+        System.out.println(job);
     }
 }
