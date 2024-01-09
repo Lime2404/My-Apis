@@ -3,7 +3,6 @@ package memoryTests;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import org.checkerframework.checker.units.qual.C;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
@@ -54,9 +53,9 @@ public class NoPojoUsers {
 
     @Test
     public void createApi(){
-        Creds creds = new Creds("morpheus", "leader");
+        Access access = new Access("morpheus", "leader");
         Response response = given()
-                .body(creds)
+                .body(access)
                 .when()
                 .post(url+"/users")
                 .then().extract().response();
@@ -68,9 +67,9 @@ public class NoPojoUsers {
 
     @Test
     public void updateApi(){
-        Creds creds = new Creds("morpheus", "zion resident");
+        Access access = new Access("morpheus", "zion resident");
         Response response = given()
-                .body(creds)
+                .body(access)
                 .when().contentType(ContentType.JSON)
                 .patch(url+"/users/2")
                 .then().extract().response();
@@ -88,5 +87,20 @@ public class NoPojoUsers {
                 .when().delete(url+"/users/2")
                 .then().statusCode(204);
         System.out.println("узер убит");
+    }
+
+    @Test
+    public void registerUser(){
+        Creds creds = new Creds("eve.holt@reqres.in", "pistol");
+        String token = "QpwL5tke4Pnpja7X4";
+        Response response = given()
+                .contentType(ContentType.JSON)
+                .body(creds)
+                .when().post(url+"/register")
+                .then().log().all()
+                .extract().response();
+        String expectedToken = response.jsonPath().get("token");
+        System.out.println(expectedToken);
+        Assert.assertEquals(token, expectedToken);
     }
 }

@@ -1,22 +1,19 @@
 package memoryTests;
 
 public class Creds {
-    private String name;
-    private String job;
+    private String email;
+    private String password;
 
-    public Creds(String name, String job) {
-        this.name = name;
-        this.job = job;
+    public Creds(String email, String password) {
+        this.email = email;
+        this.password = password;
     }
 
-//    public Creds() {
-//    }
-
-    public String getName() {
-        return name;
+    public String getEmail() {
+        return email;
     }
 
-    public String getJob() {
-        return job;
+    public String getPassword() {
+        return password;
     }
 }
