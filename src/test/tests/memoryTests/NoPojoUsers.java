@@ -81,4 +81,12 @@ public class NoPojoUsers {
 //        int a = 0;
         System.out.println(job);
     }
+
+    @Test
+    public void deleteUser(){
+        given()
+                .when().delete(url+"/users/2")
+                .then().statusCode(204);
+        System.out.println("узер убит");
+    }
 }
