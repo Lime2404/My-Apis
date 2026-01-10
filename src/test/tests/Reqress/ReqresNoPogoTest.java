@@ -4,9 +4,9 @@ import Decorator.LoggingExtension;
 import SimpleApis.Specifications;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import io.restassured.response.ValidatableResponse;
-import org.hamcrest.Matcher;
-import org.json.simple.parser.JSONParser;
+import org.apache.cassandra.streaming.StreamOut;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,7 +24,6 @@ import static org.hamcrest.Matchers.*;
 
 public class ReqresNoPogoTest {
     private final static String URi = "https://reqres.in/";
-
     // получаем пользователей
     // убеждаемся, что аватарки содержат id
     @Test
@@ -55,13 +54,26 @@ public class ReqresNoPogoTest {
 //        int i = 0;
         for (int i = 0; i < avatars.size(); i++) {
             Assert.assertTrue(avatars.get(i).contains(ids.get(i).toString()));
+            //  log.info(avatars.get(i));
 //            Assert.assertEquals(avatars.get(i), ids.get(i)); // данная проверка не подойдет, там строка
         }
         // каждый элемент должен оканчивтаься на "@regres.in"
         Assert.assertTrue(emails.stream().allMatch(x -> x.endsWith("@reqres.in")));
         // лучше вызывать allMatch так как тогда если какой-то элесент не пройдет проверку то провалится вс пверорка
 // POST
+    }
 
+        @Test
+        public void checkAvailableUsers() {
+        Specifications.installSpecification(Specifications.requestSpec(URi), Specifications.responseOK200());
+        Response response1 = given()
+                .when()
+                .get("api/users")
+                .then().log().all().extract().response();
+      List<String> ids = response1.jsonPath().getList("data.id");
+      List<String> emails = response1.jsonPath().getList("data.email");
+            System.out.println(ids);
+            System.out.println(emails);
     }
 
     @Test
@@ -90,6 +102,7 @@ public class ReqresNoPogoTest {
         user.put("email", "eve.holt@reqres.in");
         user.put("password", "pistol");
         Response response = given()
+              //  .headers("x-api-key", "reqres-free-v1") // можно и так добавлять хедеры
                 .body(user)
                 .when()
                 .post("api/register")
@@ -108,7 +121,7 @@ public class ReqresNoPogoTest {
     }
     @Test
     public void unseccessRegTestNoPojo(){
-        Specifications.installSpecification(Specifications.requestSpec(URi), Specifications.responseSpecError400());
+        Specifications.installSpecification(Specifications.requestSpec(URi), Specifications.responseSpecError401());
         Map<String, String> user = new HashMap<>();
         user.put("email", "sydney@fife");
         user.put("password", "");
@@ -121,7 +134,7 @@ public class ReqresNoPogoTest {
 //        int a =0;
         JsonPath jsonPath = response.jsonPath();
         String message = jsonPath.get("error");
-        Assert.assertEquals("Missing password", message);
+        Assert.assertEquals("Missing API key", message);
 //        System.out.println(message);
     }
 }

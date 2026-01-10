@@ -14,6 +14,7 @@ public class Specifications {
        // определяем по какой сылке обращаться и какой тип данных ожидать
        return new RequestSpecBuilder()
                .setBaseUri(url) // базовая ссылка
+               .addHeader("x-api-key", "reqres-free-v1") // добавляем хедер
                .setContentType(ContentType.JSON)
                .build();
    }
@@ -29,9 +30,9 @@ public class Specifications {
                 .build();
     }
 
-   public static ResponseSpecification responseSpecError400(){
+   public static ResponseSpecification responseSpecError401(){
        return new ResponseSpecBuilder()
-               .expectStatusCode(400)
+               .expectStatusCode(401)
                .build();
    }
 
