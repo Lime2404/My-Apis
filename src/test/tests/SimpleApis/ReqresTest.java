@@ -60,6 +60,8 @@ public class ReqresTest {
           Assert.assertTrue(avatars.get(i).contains(ids.get(i)));
 
         }
+        System.out.println(avatars);
+        System.out.println(ids);
     }
     // проверить что возвращаемые токен и id соответствуют требованиям
     @Test
@@ -77,7 +79,8 @@ public class ReqresTest {
                 .post("api/register")
                 .then().log().all() // дальше все данные которые получаем в ответ надо предать в класс
                 .extract().as(SuccessReg.class);
-        int a = 0;
+        System.out.println(successReg.getId());
+        System.out.println(successReg.getToken());
         // проверяем предварительно, что пришел не пустой результат
         Assert.assertNotNull(successReg.getId());
         Assert.assertNotNull(successReg.getToken());
