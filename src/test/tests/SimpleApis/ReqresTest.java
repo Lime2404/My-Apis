@@ -91,7 +91,7 @@ public class ReqresTest {
     // проыерить соответствует ли требованию возвращаемое сообещение при попытке отправить не полные креды
     @Test
     public void unSuccessRegTest(){
-        Specifications.installSpecification(Specifications.requestSpec(URL), Specifications.responseSpecError401());
+        Specifications.installSpecification(Specifications.requestSpec(URL), Specifications.responseSpecError400());
         //ниже будут поля с одидаемыми данными согласно https://reqres.in/
         String error = "Missing password";
         Register user = new Register("sydney@fife", "");
