@@ -92,6 +92,7 @@ public class ReqresNoPogoTest {
                 .then().log().all()
                 .body("id", equalTo(4))
                 .body("token", equalTo("QpwL5tke4Pnpja7X4"));
+        System.out.println("идеальный тест");
         // прверка проходит на уровне ответа в rest assured
     }
 
