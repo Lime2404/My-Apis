@@ -33,10 +33,10 @@ public class ReqresNoPogoTest {
 // GET
         Response response = given()
                 .when()
-                .get("api/users?page=2")
+                .get("api/users?page=1")
                 .then().log().all()
                 //ниже будут идти матчеры, надо прописать equalTo и импортровать org.hamcrest.Matchers.equalTo
-                .body("page", equalTo(2))
+                .body("page", equalTo(1))
                 .body("data.id", notNullValue()) // это хорошая проверка что поля не пустые
                 .body("data.email", notNullValue())
                 .body("data.first_name", notNullValue())
@@ -51,7 +51,9 @@ public class ReqresNoPogoTest {
         List<String> emails = jsonPath.get("data.email");
         List<Integer> ids = jsonPath.get("data.id");
         List<String> avatars = jsonPath.get("data.avatar");
-//        int i = 0;
+        System.out.println(emails);
+        System.out.println(ids);
+        System.out.println(avatars);
         for (int i = 0; i < avatars.size(); i++) {
             Assert.assertTrue(avatars.get(i).contains(ids.get(i).toString()));
             //  log.info(avatars.get(i));
@@ -115,13 +117,14 @@ public class ReqresNoPogoTest {
         // начинаем доставть переменные из jsona
         int id = jsonPath.get("id");  // поле должно быть таким же как в ответе
         String token = jsonPath.get("token");
+        System.out.println("id is " + id + " token is " + token);
         // в assrtaх всегда сначачал пишется ожидаемый резуоттат
         Assert.assertEquals(4, id);
         Assert.assertEquals("QpwL5tke4Pnpja7X4", token); //
     }
     @Test
     public void unseccessRegTestNoPojo(){
-        Specifications.installSpecification(Specifications.requestSpec(URi), Specifications.responseSpecError401());
+        Specifications.installSpecification(Specifications.requestSpec(URi), Specifications.responseSpecError400());
         Map<String, String> user = new HashMap<>();
         user.put("email", "sydney@fife");
         user.put("password", "");
@@ -134,7 +137,7 @@ public class ReqresNoPogoTest {
 //        int a =0;
         JsonPath jsonPath = response.jsonPath();
         String message = jsonPath.get("error");
-        Assert.assertEquals("Missing API key", message);
+        Assert.assertEquals("Missing password", message);
 //        System.out.println(message);
     }
 }
