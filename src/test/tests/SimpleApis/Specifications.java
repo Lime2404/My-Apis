@@ -14,7 +14,7 @@ public class Specifications {
        // определяем по какой сылке обращаться и какой тип данных ожидать
        return new RequestSpecBuilder()
                .setBaseUri(url) // базовая ссылка
-               .addHeader("x-api-key", "reqres-free-v1") // добавляем хедер
+               .addHeader("x-api-key", "reqres_775567a46fd54e739ef8e0d1d43a1906") // добавляем хедер
                .setContentType(ContentType.JSON)
                .build();
    }

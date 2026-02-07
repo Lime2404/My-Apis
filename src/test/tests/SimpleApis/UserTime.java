@@ -1,20 +1,20 @@
 package SimpleApis;
 
 public class UserTime {
-    private String name;
-    private String job;
+    private String first_name;
+    private String last_name;
 
-    public UserTime(String name, String job) {
-        this.name = name;
-        this.job = job;
+    public UserTime(String first_name, String last_name) {
+        this.first_name = first_name;
+        this.last_name = last_name;
     }
     public UserTime(){}
 
     public String getName() {
-        return name;
+        return first_name;
     }
 
     public String getJob() {
-        return job;
+        return last_name;
     }
 }
