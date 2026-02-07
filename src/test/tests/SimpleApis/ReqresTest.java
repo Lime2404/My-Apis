@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 
 public class ReqresTest {
     private final static String URL = "https://reqres.in/";
-
+// https://web.postman.co/workspace/My-Workspace~ed7d38de-479f-494f-8e68-291f9d78aa77/request/16155063-091f9173-0cb5-4f32-9b95-b18a6e84f839?action=share&source=copy-link&creator=16155063
     @Test
 
     public void checkAvatarAndIdTest() {
