@@ -144,8 +144,10 @@ public class ReqresTest {
                 .body(user)
                 .when()
                 .put("/api/users/2")
-                .then().log().all()
-                .extract().as(UserTimeResponse.class);
+                .then().log().all();
+//                .extract().body().jsonPath().getList("data", UserTimeResponse.class);
+
+
   // Ниже получаем время компьютера и преобразуем ответ с сервера отразая ненужную часть регулярными выражениями
        String regex = "(.{5})$";
        String regex1 = "(.{11})$";
